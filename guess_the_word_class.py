@@ -112,6 +112,9 @@ class ReturnQuestion:
     info(additional=""):
         Prints the person's name and age.
     """
+    def __init__(self):
+        self.input_string=''
+
     def  get_input(self,object1,object2):
         """Returns the word to be guessed.
 
@@ -127,6 +130,7 @@ class ReturnQuestion:
         The word to be guessed"""
         self.input_string=object2.options(object1)
         return self.input_string
+
 
 class CheckAnswer():
     """
@@ -168,8 +172,7 @@ class CheckAnswer():
         1 if the length of the string and list are equal,else returns 0."""
         if len(self.question) == len(self.guess):
             return 1
-        else:
-            return 0
+        return 0
 
     def checkans(self):
         """Gets the word to be guessed and the list of correctly guessed characters.
@@ -192,12 +195,10 @@ class CheckAnswer():
             if self.question == input_word:
                 print('Well Done !!')
                 return 1
-            else:
-                print('Sorry wrong answer. Correct answer-', self.question)
-                return  0
-        else:
-            print("Wrong Answer.Better luck next time.\nCorrect answer-", self.question)
-            return 0
+            print('Sorry wrong answer. Correct answer-', self.question)
+            return  0
+        print("Wrong Answer.Better luck next time.\nCorrect answer-", self.question)
+        return 0
 
 class Score:
     """
@@ -301,9 +302,8 @@ def check_repeat_l(character,list1):
     if character not in list1:
         list1.append(character)
         return character
-    else:
-        print("Don't repeat input characters")
-        return " "
+    print("Don't repeat input characters")
+    return " "
 
 def convert_case(string):
     """Gets the user input character and returns the character in lowercase.
@@ -394,3 +394,4 @@ while(TURN != 0 and TURN < 11):
     SCORE=scores.score1()
     scores.print_score()
     TURN = continue_play(TURN)
+    
