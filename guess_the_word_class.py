@@ -17,6 +17,7 @@ Contains the fucntions:
 """
 import random
 
+
 class Inputs:
     """
     A class that takes input from user and generates a random number to select question.
@@ -95,7 +96,7 @@ class Questions:
             return self.question[object1.option][object1.num]
         else:
             print('Invalid Option')
-            return 0
+            return ' '
 
 class ReturnQuestion:
     """
@@ -130,7 +131,6 @@ class ReturnQuestion:
         The word to be guessed"""
         self.input_string=object2.options(object1)
         return self.input_string
-
 
 class CheckAnswer():
     """
@@ -272,6 +272,8 @@ def check_repeat(string):
         The number of unique characters in the word"""
     string1=string
     length = len(string1)
+    if length == 1:
+        return 0
     length1 = length
     for iter1 in range(0, length):
         count = 0
@@ -377,11 +379,13 @@ while(TURN != 0 and TURN < 11):
     q=Questions()
     c=ReturnQuestion()
     r=c.get_input(i,q)
-    l=check_repeat(r)
+    LENGTHS=check_repeat(r)
+    if LENGTHS == 0:
+        break
     o = []
     h = []
     print("Enter characters one by one:\n")
-    for i in range(l+10):
+    for i in range(LENGTHS+10):
         a = input('')
         a1 = convert_case(a)
         a2 = check_repeat_l(a1,h)
@@ -394,4 +398,3 @@ while(TURN != 0 and TURN < 11):
     SCORE=scores.score1()
     scores.print_score()
     TURN = continue_play(TURN)
-    
